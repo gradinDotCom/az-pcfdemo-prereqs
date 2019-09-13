@@ -1,8 +1,19 @@
-pool:
-  vmImage: 'terraform'
+resources:
+ containers:
+   - container: terraform
+     image: terraform:latest
 
-container: terraform:latest
+jobs:
+- job: TFinaContainer
+  pool:
+    vmImage: 'ubuntu-16.04'
 
-- task: CmdLine@2
-  inputs:
-    script: 'terraform --version'
+  strategy:
+   matrix:
+     ubuntu16:
+       containerResource: terraform
+
+  container: $[ variables['containerResource']]
+
+  steps:
+    - script: terraform --version
