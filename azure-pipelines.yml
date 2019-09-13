@@ -1,7 +1,7 @@
 resources:
  containers:
    - container: terraform
-     image: terraform:latest
+     image: hashicorp/terraform:full
 
 jobs:
 - job: TFinaContainer
