@@ -1,19 +1,7 @@
-resources:
- containers:
-   - container: terraform
-     image: hashicorp/terraform:full
+pool:
+  vmImage: 'ubuntu-16.04'
 
-jobs:
-- job: TFinaContainer
-  pool:
-    vmImage: 'ubuntu-16.04'
+container: hashicorp/terraform:latest
 
-  strategy:
-   matrix:
-     ubuntu16:
-       containerResource: terraform
-
-  container: $[ variables['containerResource']]
-
-  steps:
-    - script: terraform --version
+steps:
+- script: terraform --version
